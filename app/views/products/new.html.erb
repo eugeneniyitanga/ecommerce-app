@@ -1,0 +1,14 @@
+ <%= form_tag "/products", method: :post do %>
+   <div>
+     Product Name: <input type="text" name="name"><br>
+   </div>
+   <div>
+      Brand: <input type="text" name="brand"><br>
+   </div>
+   <div>
+      Price: <input type="text" name="price"><br>
+   </div>
+   <div>
+     <input type="submit" value="Create Product"> 
+   </div> 
+   <% end %>

@@ -12,3 +12,7 @@
     <td><%= @product.price %></td>
   </tr>   
 </table>
+
+<%= form_tag "/products/#{@product.id}", method: :delete do %>
+  <input type="submit" value="Destroy Product">
+<% end %>

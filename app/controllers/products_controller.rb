@@ -18,7 +18,9 @@ class ProductsController < ApplicationController
     brand = params[:brand]
     price = params[:price]
     product = Product.new({name: name, brand: brand, price: price})
-    product.save 
+    product.save
+    redirect_to "/products/#{product.id}" 
+    flash[:success] = "Product Created"
   end 
 
   def edit
@@ -26,18 +28,22 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find_by(id: params[:id])
-    @product.name = params[:name]
-    @product.brand = params[:brand]
-    @product.price = params[:price]
-    @product.save
+    product = Product.find_by(id: params[:id])
+    product.name = params[:name]
+    product.brand = params[:brand]
+    product.price = params[:price]
+    product.save
+    flash[:ohh] = "Product Updated"
+    redirect_to "/products/#{product.id}"
   end
 
   def destroy 
-     @product = Product.find_by(id: params[:id])
-    @product.name = params[:name]
-    @product.brand = params[:brand]
-    @product.price = params[:price]
-    @product.save
+    product = Product.find_by(id: params[:id])
+    product.name = params[:name]
+    product.brand = params[:brand]
+    product.price = params[:price]
+    product.save
+    flash[:warning] = "Product Deleted"
+    redirect_to "/products/#{product.id}"
    end 
 end

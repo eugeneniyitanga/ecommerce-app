@@ -1,16 +1,19 @@
-<h1>Welcome to New Digital Shop</h1>
-
-<table class="table table-striped">
-  <tr>
-    <th>Product Name</th>
-    <th>Brand</th>
-    <th>Price</th>
-  </tr>
-    <% @all_products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.brand %></td>
-        <td><%= product.price %></td>
-      </tr>
+  <h1>All Products</h1>
+ <table class="table table-striped">
+  <div class="row">
+  <% @products.each_slice(3) do |three_products| %>
+    <div class="row">
+      <% three_products.each do |product| %>
+      <div class="col-md-4">
+        <h2><a href="/products/<%= product.id %>"><%= product.name %></a></h2>
+        <h2>Product: <%= product.name %></h2>
+        <h2>Brand: <%= product.brand %></h2>
+        <h2>Price: <%= product.price %></h2>
+      </div>
+      <% end %> 
+    </div>
     <% end %> 
+  </div>
 </table>
+
+  

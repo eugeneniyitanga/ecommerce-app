@@ -35,7 +35,6 @@ class ProductsController < ApplicationController
     name = params[:name]
     brand = params[:brand]
     price = params[:price]
-    image = image[:image]
     product = Product.new({name: name, brand: brand, price: price})
     product.save
     redirect_to "/products/#{product.id}" 
@@ -51,7 +50,6 @@ class ProductsController < ApplicationController
     product.name = params[:name]
     product.brand = params[:brand]
     product.price = params[:price]
-    product.image = params[:image]
     product.save
     flash[:ohh] = "Product Updated"
     redirect_to "/products/#{product.id}"
@@ -62,7 +60,6 @@ class ProductsController < ApplicationController
     product.name = params[:name]
     product.brand = params[:brand]
     product.price = params[:price]
-    product.image = params[:image]
     product.save
     flash[:warning] = "Product Deleted"
     redirect_to "/products/#{product.id}"

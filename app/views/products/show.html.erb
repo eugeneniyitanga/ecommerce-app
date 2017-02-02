@@ -21,7 +21,7 @@
     <td><%= @product.supplier.name %><br></td>
     <br>
     <% @product.images.each do |image| %> 
-       <img src="<%= image.url %>">
+       <img class="images" src="<%= image.url %>">
         <% end %>   
   </tr> 
 </table>

@@ -6,13 +6,24 @@
     <th>Brand</th>
     <th>Price</th>
     <th>Tax</th>
+    <th>Supplier</th>
+    <th>Image</th>
   </tr>
   <tr>
-    <td><%= @product.name %></td>
-    <td><%= @product.brand %></td>
-    <td><%= @product.price %></td>
-    <td><%= @product.tax %></td>
-  </tr>   
+    <td><%= @product.name %><br></td>
+    <br>
+    <td><%= @product.brand %><br></td>
+    <br>
+    <td><%= @product.price %><br></td>
+    <br>
+    <td><%= @product.tax %><br></td>
+    <br>
+    <td><%= @product.supplier.name %><br></td>
+    <br>
+    <% @product.images.each do |image| %> 
+       <img src="<%= image.url %>">
+        <% end %>   
+  </tr> 
 </table>
 
 <%= form_tag "/products/#{@product.id}", method: :delete do %>

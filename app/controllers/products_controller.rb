@@ -20,13 +20,17 @@ class ProductsController < ApplicationController
   end
 
   def new
+    unless current_user
+     flash[:message] = "Only signed in users can add products!"
+    redirect_to "/signup"
+    end
   end 
 
   def search 
     search_query = params[:search_query]
     @products = Product.where("name ILIKE ? OR brand ILIKE ?", "%#{search_query}%", "%#{search_query}%")
     if @products.empty?
-      flash[:info] = "No search found" 
+      flash[:info] = "No #{search_query} found" 
     end 
     render :index
   end 

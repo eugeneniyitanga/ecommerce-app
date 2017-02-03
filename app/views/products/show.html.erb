@@ -29,3 +29,13 @@
 <%= form_tag "/products/#{@product.id}", method: :delete do %>
   <input type="submit" value="Delete">
 <% end %> 
+<br>
+<br>
+<%= form_tag "/orders", method: :post do %>
+  <div>
+    Quantity:
+    <input type="integer" name="quantity">
+  </div>
+  <br>
+  <input type="submit" value="Buy Now">
+<% end %>

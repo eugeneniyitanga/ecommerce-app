@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  get "images", to: "images#new"
-  get "images", to: "images#create"
+  get "/images", to: "images#new"
+  post "/images", to: "images#create"
+
+  post "/orders", to: "orders#create"
  end

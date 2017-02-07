@@ -22,20 +22,25 @@
     <br>
     <% @product.images.each do |image| %> 
        <img class="images" src="<%= image.url %>">
-        <% end %>   
-  </tr> 
-</table>
+        <% end %> 
 
 <%= form_tag "/products/#{@product.id}", method: :delete do %>
   <input type="submit" value="Delete">
 <% end %> 
 <br>
 <br>
-<%= form_tag "/orders", method: :post do %>
-  <div>
-    Quantity:
-    <input type="integer" name="quantity">
-  </div>
-  <br>
-  <input type="submit" value="Buy Now">
-<% end %>
+
+      <%= form_tag "/orders", method: :post do %>
+ <h2>Buy Now</h2>
+ <div>
+ Quantity <input type="text" name ="quantity">
+ <input type="hidden" name ="product_id" value="<%= @product.id %>">
+ </div>
+ <br>
+ <div>
+ <input type="Submit" value="Add to Cart!">
+ </div>
+<%end%> 
+  </tr> 
+</table>
+

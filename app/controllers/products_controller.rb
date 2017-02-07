@@ -3,8 +3,10 @@ class ProductsController < ApplicationController
   def index  
     if params[:sort]
       @products = Product.all.order(price: params[:sort])
-    elsif params[:filter]
+    elsif params[:filter] 
       @products = Product.where("price > ?", 1000)
+    elsif params[:category]
+      @products = Category.find_by(name: params[:category]).products
     else 
       @products = Product.all
     end  

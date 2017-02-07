@@ -38,6 +38,10 @@
             <li><a href="/products?sort=asc">Sort By Price Highest to Lowest</a></li>
             <li><a href="/products?sort=desc">Sort By Price Lowest to Highest</a></li>
             <li><a href="/products?filter=discount">Discounted Items</a></li>
+            <li><a href="/products/random">Random Product</a></li>
+            <% Category.all.each do |category| %>
+            <li><a href="/products/?category=<%=category.name %>"><%= category.name.capitalize %></a></li> 
+            <% end %>
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>

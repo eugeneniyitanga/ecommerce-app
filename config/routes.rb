@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   post "/images", to: "images#create"
 
   post "/orders", to: "orders#create"
+  get "/orders/:id", to: "orders#show"
  end

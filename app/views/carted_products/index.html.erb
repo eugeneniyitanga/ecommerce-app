@@ -1,0 +1,30 @@
+
+<h4>Hello <%= @carts.first.order.user.name %>  ,you ordered: </h4>
+<br>
+<div class="row">
+ <div class="col-md-2"></div>
+ <div class="col-md-8">
+
+<table class="table">
+<tr>
+
+<th>Product</th>
+<th>Quantity</th>
+<th>Image</th>
+<th>Product_id</th>
+<th>Price</th>
+</tr>
+<% @carts.each do |cart| %>
+<tr> 
+<td><%= cart.product.name %></td>
+<td><%= cart.quantity %></td>
+<img src="" cat.product.images.first.url>
+<td><%= cart.product_id %></td>
+<td><%= cart.product.price %></td>
+<% end %>
+</tr>
+<%= button_to "/orders/#{@order}", method: :post do %>
+  <input type="submit" value="Buy Now">
+  <br>
+<br>
+<% end %> 

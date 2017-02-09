@@ -27,11 +27,14 @@
     <div class="row">
       <% three_products.each do |product| %>
       <div class="col-md-4">
-      <br>
-        <h4><a href="/products/<%= product.id %>"><%= product.name %></a></h4>
-        <h4>Brand: <%= product.brand %></h4>
-        <h4>Price: <%= product.price %></h4>
-        <h4>Tax: <%= product.tax %></h4>
+        <h4><a href="/products/<%= product.id %>"><%= product.name %></a><br></h4>
+        <br>
+        <h4>Brand: <%= product.brand %><br></h4>
+        <br>
+        <h4>Price: <%= product.price %><br></h4>
+        <br>
+        <h4>Tax: <%= product.tax %><br></h4>
+        <br>
         <img class="images" src="<%= product.images.first.url %>">
       </div>
       <br>

@@ -2,27 +2,27 @@
 
 <table>
   <tr>
-    <th>Product</th>
-    <th>Brand</th>
-    <th>Price</th>
-    <th>Tax</th>
-    <th>Supplier</th>
-    <th>Image</th>
-  </tr>
-  <tr>
-    <td><%= @product.name %><br></td>
+    <h4>Product: <%= @product.name %><br></h4>
     <br>
-    <td><%= @product.brand %><br></td>
+    <h4> Brand: <%= @product.brand %><br></h4>
     <br>
-    <td><%= @product.price %><br></td>
+    <h4>Price: <%= @product.price %><br></h4>
     <br>
-    <td><%= @product.tax %><br></td>
+    <h4>Tax: <%= @product.tax %><br></h4>
     <br>
-    <td><%= @product.supplier.name %><br></td>
+    <h4>Supplier: <%= @product.supplier.name %><h4></td>
     <br>
+  <!-- <ul>
+  <% @product.categories.each do |category| %> 
+
+  <li>Category:<%= category.name %></li>  
+   <% end %> 
+   </ul> -->
+
     <% @product.images.each do |image| %> 
        <img class="images" src="<%= image.url %>">
         <% end %> 
+        <br>
 
 <%= form_tag "/products/#{@product.id}", method: :delete do %>
   <input type="submit" value="Delete">
@@ -30,17 +30,19 @@
 <br>
 <br>
 
-      <%= form_tag "/orders", method: :post do %>
- <h2>Buy Now</h2>
+  </tr> 
+</table>
+
+  <%= form_tag "/carted_products", method: :post do %>
+  <br>
+ <br>
  <div>
  Quantity <input type="text" name ="quantity">
  <input type="hidden" name ="product_id" value="<%= @product.id %>">
  </div>
  <br>
  <div>
- <input type="Submit" value="Add to Cart!">
+ <input type="Submit" value="Add to Cart">
  </div>
-<%end%> 
-  </tr> 
-</table>
 
+<% end %> 

@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-   before_action :authenticate_user!, except: [:index, :show, :search]
+ before_action :authenticate_user!, except: [:index, :show, :search]
+
+ before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   def index  
     if params[:sort]
@@ -10,11 +12,11 @@ class ProductsController < ApplicationController
       @products = Category.find_by(name: params[:category]).products
     else 
       @products = Product.all
-    end  
+    end
   end 
 
   def show 
-  @product = Product.find_by(id: params[:id])
+    @product = Product.find_by(id: params[:id])
     if params[:id] == "random"
       @product = Product.all.sample
     else 
@@ -25,15 +27,15 @@ class ProductsController < ApplicationController
   def new
     unless current_user
      flash[:message] = "Only signed in users can add products!"
-    redirect_to "/signup" 
+     redirect_to "/signup" 
 
      if current_user && current_user.admin
       @suppliers = Supplier.all
     else
      flash[:danger] = "You've no permission!"
-      redirect_to "/"
-    end
-    end 
+     redirect_to "/"
+   end 
+   end
   end 
 
   def search 
@@ -56,6 +58,7 @@ class ProductsController < ApplicationController
   end 
 
   def edit
+    @suppliers = Supplier.all 
     @product = Product.find_by(id: params[:id])
   end
 
@@ -67,6 +70,14 @@ class ProductsController < ApplicationController
     product.save
     flash[:ohh] = "Product Updated"
     redirect_to "/products/#{product.id}"
+
+    if @product.save 
+      flash[:success] = "Product Updated"
+      redirect_to "/products/#{@product.id}"
+    else 
+      @suppliers = Supplier.all 
+      render :edit 
+    end 
   end
 
   def destroy 
@@ -77,5 +88,5 @@ class ProductsController < ApplicationController
     product.save
     flash[:warning] = "Product Deleted"
     redirect_to "/products/#{product.id}"
-   end 
+  end 
 end

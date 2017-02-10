@@ -2,6 +2,14 @@
 <h1>Edit Products</h1>
 
 <br>
+<ul> 
+  <% if @product.errors.any? %> 
+    <% @product.errors.full_messages.each do |message| %>
+    <li class="model-errors"><%= message %></li>
+    <% end %> 
+  <% end %> 
+</ul>
+
 
 <%= form_tag "/products/#{@product.id}", method: :patch do -%>
 <br>

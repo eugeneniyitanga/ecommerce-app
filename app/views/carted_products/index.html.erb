@@ -13,18 +13,25 @@
 <th>Image</th>
 <th>Product_id</th>
 <th>Price</th>
+<th>Delete Product</th>
+<br>
 </tr>
 <% @carts.each do |cart| %>
+<% @order.carted_products.each do |carted_product| %>
 <tr> 
 <td><%= cart.product.name %></td>
 <td><%= cart.quantity %></td>
-<img src="" cat.product.images.first.url>
+<td><img class="image" src = "<%=cart.product.images.first.url  %>"</td>
 <td><%= cart.product_id %></td>
 <td><%= cart.product.price %></td>
+<td><%= link_to "Remove", "/carted_products/#{carted_product.id}", method: :delete %></td>
 <% end %>
 </tr>
-<%= button_to "/orders/#{@order}", method: :post do %>
-  <input type="submit" value="Buy Now">
+<%= button_to "Buy Now", "orders/#{@order.id}", class: "btn btn-success", method: :patch %>
   <br>
 <br>
-<% end %> 
+<% end %>
+<br>
+<br> 
+<br>
+<br>

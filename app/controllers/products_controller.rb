@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+   before_action :authenticate_user!, except: [:index, :show, :search]
 
   def index  
     if params[:sort]
@@ -24,8 +25,15 @@ class ProductsController < ApplicationController
   def new
     unless current_user
      flash[:message] = "Only signed in users can add products!"
-    redirect_to "/signup"
+    redirect_to "/signup" 
+
+     if current_user && current_user.admin
+      @suppliers = Supplier.all
+    else
+     flash[:danger] = "You've no permission!"
+      redirect_to "/"
     end
+    end 
   end 
 
   def search 
